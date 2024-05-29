@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<style>
+ 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  header {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    margin-top: -20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+  }
+
+  form {
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #035AA6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: #023e8a;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #AC99F2;
+    outline: none;
+  }
+
+  button:hover {
+    background-color: #8c7dd6;
+  }
+
+  a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #035AA6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: #023e8a;
+  }
+
+  footer {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .logo {
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .btnCadastrar,
+  .btnEntrar {
+    margin-top: 10px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #AC99F2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btnCadastrar:hover,
+  .btnEntrar:hover {
+    background-color: #8c7dd6;
+  }
+</style>
+</head>
+<body>
+
+<header></header>
+
+<img src="www/components/logotipo.png" class="logo" alt="Logotipo">
+
+<div class="container">
+  <h2>Formulário de Inscrição</h2>
+  <form id="formCadastro">
+    <input type="text" id="nome" placeholder="Nome" required>
+    <input type="email" id="email" placeholder="E-mail" required>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <button type="submit" class="btnCadastrar">Cadastrar</button><br>
+     <a href="tela1.html">Voltar</a>
+  </form>
+  <a href="cadastrarOng.html">Sou uma ONG</a>
+</div>
+
+<footer></footer>
+
+<script>
+  document.getElementById('formCadastro').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    const dados = { nome, email, senha };
+    localStorage.setItem('dadosCadastrados', JSON.stringify(dados));
+
+    alert('Dados cadastrados com sucesso!');
+    document.getElementById('formCadastro').reset();
+  });
+
+  function entrar() {
+    const dados = JSON.parse(localStorage.getItem('dadosCadastrados'));
+    if (dados) {
+      alert(`Bem-vindo(a), ${dados.nome}!`);
+    } else {
+      alert('Nenhum usuário cadastrado.');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Inicial</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  header {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  
+ footer {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+
+  .menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 97%;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+    text-align: center; 
+  }
+
+  nav ul li {
+    margin-bottom: 10px; 
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #ddd;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .card p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .card a {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #AC99F2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .card a:hover {
+    background-color: #8c7dd6;
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      width: 100%;
+      background-color: #AC99F2;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul li {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    nav ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    nav.active {
+      display: flex;
+    }
+  }
+  .logo {
+     
+    width: 260px;
+    display: block;
+    margin: 20px auto;
+  }
+  
+
+
+  .comment-form {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .comment-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .comment-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #AC99F2;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+
+  .comments-container {
+    margin-top: 20px;
+  }
+
+  .comment {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .comment-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+ 
+  p, strong{
+      display: flex;
+      margin-left: 40px;
+  }
+
+  strong{
+      margin-top: -25px;
+  }
+
+  .message-container {
+    text-align: center;
+    margin: 20px 0;
+    
+  }
+
+  #messageInput {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 120px;
+  }
+
+  #sendButton {
+    padding: 10px 20px;
+    border: none;
+    background-color: #AC99F2;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #sendButton:hover {
+    background-color: #8c7dd6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  
+  <div class="menu-toggle">&#9776;</div>
+  <nav>
+    <ul>
+      <li><a href="home.html">Início</a></li>
+      <li><a href="alertasTempo.html">Alertas</a></li>
+      <li><a href="comunidade.html">Comunidade</a></li>
+      <li><a href="doacao.html">Doações</a></li>
+      <li><a href="perfil.html">Meu perfil</a></li>
+        <li><a href="info.html">Info-Saúde</a></li>
+    </ul>
+  </nav>
+</header>
+<br><br>
+<center><h2>Comunidade</h2></center>
+<br>
+<div class="comment-input">
+  <img src="www/components/usuario.png" alt="Foto do usuário" class="comment-image">
+  <strong>Carla:</strong>
+  <p>Olá, pessoal! Está chovendo muito. Muitas casas estão alagadas, aqui no Jussara.</p>
+</div>
+
+<div class="comment-input">
+  <img src="www/components/usuario.png" alt="Foto do usuário" class="comment-image">
+  <strong>Ricardo:</strong>
+  <p>Nossa! A galera deve ter perdido muitas coisas com a enchente. Como podemos ajudá-los?</p>
+</div>
+<div class="comment-input">
+  <img src="www/components/usuario.png" alt="Foto do usuário" class="comment-image">
+  <strong>Juliana:</strong>
+  <p>Pessoal, quem quiser ajudar e não sabe como, existem algumas Ong's no app que recebem as doações e entregam para as vítimas.</p>
+</div>
+<div class="comments-container" id="comments">
+  <!-- Aqui serão adicionados os novos comentários -->
+</div>
+<center>
+  <input type="text" class="message" id="messageInput" placeholder="Faça um comentário">
+  <button id="sendButton"onclick="addComment()">Enviar</button>
+</center>
+<br><br>
+<footer></footer>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', function() {
+    nav.classList.toggle('active');
+  });
+
+  function addComment() {
+    const messageInput = document.getElementById('messageInput');
+    const message = messageInput.value.trim();
+
+    if (message === '') {
+      alert('Por favor, digite uma mensagem.');
+      return;
+    }
+
+    const commentsContainer = document.getElementById('comments');
+
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('comment-input');
+
+    const img = document.createElement('img');
+    img.src = 'www/components/usuario.png';
+    img.alt = 'Foto do usuário';
+    img.classList.add('comment-image');
+
+    const strong = document.createElement('strong');
+    strong.textContent = 'Eduarda:';
+
+    const p = document.createElement('p');
+    p.textContent = message;
+
+    commentDiv.appendChild(img);
+    commentDiv.appendChild(strong);
+    commentDiv.appendChild(p);
+
+    commentsContainer.appendChild(commentDiv);
+
+    messageInput.value = '';
+  }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

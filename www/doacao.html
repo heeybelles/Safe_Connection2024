@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="cordova.js"></script>
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="script.js"></script>
+
+    <!-- Incluindo Font Awesome para o ícone de pesquisa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+         /* Estilos globais */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
+
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+         }
+
+         /* Estilos do cabeçalho */
+        header {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 97%;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+    text-align: center; 
+  }
+
+  nav ul li {
+    margin-bottom: 10px; 
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #ddd;
+  }
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      width: 100%;
+      background-color: #AC99F2;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul li {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    nav ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    nav.active {
+      display: flex;
+    }
+  }
+         img {
+            width: 30px;
+            height: 30px;
+         }
+
+         .button {
+            margin-top: 40px;
+         }
+
+         .button button {
+            margin-right: 20px;
+            border: solid 2px;
+            background-color: white;
+            border-color: blueviolet;
+            border-radius: 15px;
+            height: 60px;
+            width: 60px;
+         }
+
+         button:hover {
+            background-color: rgb(241, 241, 241);
+         }
+
+         p {
+            font-size: 18px;
+         }
+
+         .p1 {
+            margin-left: -20px;
+         }
+
+         .p2 {
+            margin-left: -20px;
+         }
+
+         .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            margin-top: -10%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         }
+
+         input[type="value"],
+         input[type="text"],
+         input[type="password"] {
+            width: calc(50% - 20px); /* Alterado para 50% */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+         }
+
+         button {
+            width: calc(50% - 20px); /* Alterado para 50% */
+            padding: 10px;
+            background-color: #AC99F2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+         }
+
+         button:hover {
+            background-color: #8c7dd6;
+         }
+
+         a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #035AA6;
+            text-decoration: none;
+         }
+
+         footer {
+            width: 100%;
+            height: 50px;
+            background-color: #AC99F2;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+         }
+
+         .logo {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            margin-top: -110px;
+            justify-content: center;
+            align-items: center;
+         }
+
+         /* Estilos dos cards de ONGs */
+         .ong-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 80%;
+            margin: auto;
+            cursor: pointer; /* Adicionado cursor pointer */
+         }
+
+         .ong-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+         }
+
+         .ong-info {
+            flex: 1;
+         }
+
+         .ong-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+         }
+
+         .ong-info p {
+            font-size: 18px;
+         }
+
+         
+
+         /* Estilos do contêiner dos inputs e botões */
+         .input-container {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-left: -40px;
+             width:140px;
+             height:40px;
+             outline:none;
+         }
+
+         .input-container input {
+            flex: 1;
+            height:36px;
+            border:none;
+            border-radius:10px;
+            padding-right: 30px; 
+            text-align: center;
+         }
+
+         .input-container button {
+             margin-top: -15%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            width: auto;
+            height: auto;
+            font-size: 18px;
+            color: #AC99F2;
+            padding-left: 5px;
+         }
+
+    </style>
+</head>
+<body>
+<header>
+  
+  <div class="menu-toggle">&#9776;</div>
+  <nav>
+    <ul>
+      <li><a href="home.html">Início</a></li>
+      <li><a href="alertasTempo.html">Alertas</a></li>
+      <li><a href="comunidade.html">Comunidade</a></li>
+      <li><a href="doacao.html">Doações</a></li>
+      <li><a href="perfil.html">Meu perfil</a></li>
+    </ul>
+  </nav>
+</header>
+<br><br><br>
+<center><img src="www/components/logotipo.png" class="logo"></center>
+
+
+ <center>
+     <div class="input-container">
+         <input type="search" placeholder="Busque Ong's">
+         <!-- Ícone de pesquisa -->
+         <button><i class="fas fa-search"></i></button>
+     </div>
+     <br>
+  <h3>Lista de ONGs</h3><br>
+    <div class="ong-card" onclick="window.location.href='perfilOng.html';">
+        <img src="www/components/ongA.jpg" alt="Logo da ONG A" class="ong-logo">
+        <div class="ong-info">
+            <h2>ONG A</h2>
+            <p>Trabalhando pela educação</p>
+        </div>
+    </div>
+    <div class="ong-card" onclick="window.location.href='pagina_da_ong.html';">
+        <img src="www/components/ongB.png" alt="Logo da ONG B" class="ong-logo">
+        <div class="ong-info">
+            <h2>ONG B</h2>
+            <p>Proteção dos animais</p>
+        </div>
+    </div>
+    <div class="ong-card" onclick="window.location.href='pagina_da_ong.html';">
+        <img src="www/components/ongC.png" alt="Logo da ONG C" class="ong-logo">
+        <div class="ong-info">
+            <h2>ONG C</h2>
+            <p>Apoio a crianças carentes</p>
+        </div>
+    </div>
+</center>
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', function() {
+    nav.classList.toggle('active');
+  });
+  function vol() {
+    window.location.href = "doacao.html";
+}
+</script>
+<footer></footer>
+</body>
+</html>

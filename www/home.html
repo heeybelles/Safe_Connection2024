@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Inicial</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  header {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  
+ footer {
+    width: 100%;
+    height: 50px;
+    background-color: #AC99F2;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+
+  .menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 97%;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+    text-align: center; 
+  }
+
+  nav ul li {
+    margin-bottom: 10px; 
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #ddd;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .card p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .card a {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #AC99F2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .card a:hover {
+    background-color: #8c7dd6;
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      width: 100%;
+      background-color: #AC99F2;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul li {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    nav ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    nav.active {
+      display: flex;
+    }
+  }
+  .logo {
+     
+    width: 260px;
+    display: block;
+    margin: 20px auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  
+  <div class="menu-toggle">&#9776;</div>
+  <nav>
+    <ul>
+      <li><a href="home.html">Início</a></li>
+      <li><a href="alertasTempo.html">Alertas</a></li>
+      <li><a href="comunidade.html">Comunidade</a></li>
+      <li><a href="doacao.html">Doações</a></li>
+       <li><a href="perfil.html">Meu perfil</a></li>
+         <li><a href="info.html">Info-Saúde</a></li>
+    </ul>
+  </nav>
+</header>
+<br><br><br>
+<img src="www/components/logotipo.png" class="logo">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="card">
+        <h3>Receba Alertas em Tempo Real</h3>
+        <p>Fique seguro e informado sobre enchentes, deslizamentos e outras emergências.</p>
+        <a href="#" class="btn">Saiba Mais</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <h3>Participe da Nossa Comunidade</h3>
+        <p>Troque informações, receba suporte e ajude outros membros da comunidade.</p>
+        <a href="#" class="btn">Participar</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card">
+        <h3>Faça Doações e Ajude sua comunidade</h3>
+        <p>Ajude vítimas de desastres naturais contribuindo com doações para reconstrução de áreas afetadas.</p>
+        <a href="#" class="btn">Doar Agora</a>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Próximo</span>
+  </a>
+</div>
+<br><br> <footer></footer>
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+
+  menuToggle.addEventListener('click', function() {
+    nav.classList.toggle('active');
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
