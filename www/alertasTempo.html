@@ -109,6 +109,7 @@
             max-width: 800px;
             margin: 70px auto 0;
             padding: 20px;
+            margin-top: -120px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -256,7 +257,7 @@
                 <li><a href="comunidade.html">Comunidade</a></li>
                 <li><a href="doacao.html">Doações</a></li>
                 <li><a href="perfil.html">Meu perfil</a></li>
-                  <li><a href="info.html">Info-Saúde</a></li>
+                <li><a href="info.html">Info-Saúde</a></li>
             </ul>
         </nav>
     </header>
@@ -318,6 +319,8 @@
                 </div>
             </div>
             <div id="alert"></div>
+            <br>
+            <h4 id="rain_chance"></h4> <!-- Novo h1 para a mensagem de chuva -->
         </div>
     </div>
     <footer></footer>
@@ -328,42 +331,6 @@
         menuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
-
-        // Get user's geolocation
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                showAlert("Geolocalização não é suportada por este navegador.");
-            }
-        }
-
-        function showPosition(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            const apiKey = '33c5a29614ea3e8e036608a045fc46a3';
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`;
-
-            fetchWeather(apiUrl);
-        }
-
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    showAlert("Usuário negou a solicitação de Geolocalização. Por favor, digite o nome de uma cidade para buscar o clima.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    showAlert("As informações de localização estão indisponíveis.");
-                    break;
-                case error.TIMEOUT:
-                    showAlert("A solicitação para obter a localização do usuário expirou.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    showAlert("Ocorreu um erro desconhecido.");
-                    break;
-            }
-        }
 
         // Fetch weather data based on URL
         async function fetchWeather(apiUrl) {
@@ -383,10 +350,7 @@
                     humidity: json.main.humidity,
                 });
 
-                // Check weather condition and send push notification if necessary
-                if (!json.weather[0].description.toLowerCase().includes('chuva')) {
-                    sendPushNotification("Sem riscos");
-                }
+                checkRainCondition(json.weather[0].description);
             } else {
                 document.querySelector("#weather").classList.remove('show');
                 showAlert(`
@@ -407,10 +371,10 @@
 
             document.querySelector('#temp_value').innerHTML = `${json.temp.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
             document.querySelector('#temp_description').innerHTML = `${json.description}`;
-            document.querySelector('#temp_img').setAttribute('src', `https://openweathermap.org/img/wn/${json.tempIcon}@2x.png`)
+            document.querySelector('#temp_img').setAttribute('src', `https://openweathermap.org/img/wn/${json.tempIcon}@2x.png`);
 
             document.querySelector('#temp_max').innerHTML = `${json.tempMax.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
-            document.queryselector('#temp_min').innerHTML = `${json.tempMin.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
+            document.querySelector('#temp_min').innerHTML = `${json.tempMin.toFixed(1).toString().replace('.', ',')} <sup>C°</sup>`;
             document.querySelector('#humidity').innerHTML = `${json.humidity}%`;
             document.querySelector('#wind').innerHTML = `${json.windSpeed.toFixed(1)} km/h`;
         }
@@ -420,19 +384,23 @@
             document.querySelector('#alert').innerHTML = msg;
         }
 
-        // Send push notification
-        function sendPushNotification(message) {
-            // Here you would integrate with the Monaca Push Plugin or any other push service you use
-            // Example for Monaca:
-            monaca.notification.push({
-                title: "Previsão do Tempo",
-                text: message,
-                sound: "default"
-            });
-        }
+        // Check rain conditions and update the page
+        function checkRainCondition(description) {
+            const rainChance = document.querySelector('#rain_chance');
+            const lowerDesc = description.toLowerCase();
 
-        // Initial call to get the location and weather
-        getLocation();
+            if (lowerDesc.includes('chuva')) {
+                if (lowerDesc.includes('forte')) {
+                    rainChance.textContent = 'Há possibilidade de chuva forte. Cuidado com possíveis alagamentos.';
+                } else if (lowerDesc.includes('moderada') || lowerDesc.includes('média')) {
+                    rainChance.textContent = 'Há possibilidade de chuva moderada.';
+                } else {
+                    rainChance.textContent = 'Há possibilidade de chuva fraca.';
+                }
+            } else {
+                rainChance.textContent = 'Não há previsão de chuva e nem riscos em sua localização.';
+            }
+        }
 
         // Search functionality
         document.querySelector('#search').addEventListener('submit', async (event) => {
@@ -448,6 +416,14 @@
 
             const apiKey = '33c5a29614ea3e8e036608a045fc46a3';
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(cityName)}&appid=${apiKey}&units=metric&lang=pt_br`;
+
+            fetchWeather(apiUrl);
+        });
+
+        // Fetch weather data for Mongaguá on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiKey = '33c5a29614ea3e8e036608a045fc46a3';
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Mongaguá&appid=${apiKey}&units=metric&lang=pt_br`;
 
             fetchWeather(apiUrl);
         });

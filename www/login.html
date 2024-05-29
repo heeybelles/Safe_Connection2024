@@ -118,7 +118,7 @@
     <input type="password" id="senha" placeholder="Senha" required>
     <br>
     <a href="esqueci-senha.html">Esqueci a senha</a>
-    <a href="home.html"><button type="submit" class="btnEntrar" onclick="alert('Seja bem vindo')">Entrar</button></a>
+<button type="submit" class="btnEntrar" onclick="prox()">Entrar</button>
   </form>
 
   <a href="tela1.html">Voltar</a>
@@ -127,7 +127,9 @@
 <footer></footer>
 
 <script>
- 
+ function prox() {
+    window.location.href = "home.html";
+}
 </script>
 
 </body>
